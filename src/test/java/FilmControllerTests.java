@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.controllers.FilmController;
 import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.Film;
+
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -53,7 +54,7 @@ class FilmControllerTests {
 
     }
 
-        @Test
+    @Test
     void testFilmWithDateBeforeThanRequired() {
         Film film = new Film(1, "John Wick", "A movie about a man",
                 LocalDate.of(1895, 12, 27), 120);
@@ -62,6 +63,7 @@ class FilmControllerTests {
 
 
     }
+
     @Test
     void testFilmWithDescriptionMoreThan200Words() {
         Film film = new Film(1, "Shadows Of Realms", """

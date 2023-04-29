@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class FilmorateApplicationTests {
 
     @Test
-    void contextLoads(){
+    void contextLoads() {
 
     }
 }

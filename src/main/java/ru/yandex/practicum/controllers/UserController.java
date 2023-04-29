@@ -25,16 +25,16 @@ public class UserController {
 
     @PostMapping
     public User create(@RequestBody User user) {
-        if(user.getEmail() == null || user.getEmail().isBlank() || !user.getEmail().contains("@")) {
+        if (user.getEmail() == null || user.getEmail().isBlank() || !user.getEmail().contains("@")) {
             throw new ValidationException("Адрес электронной почты не может быть пустым.");
         }
-        if(user.getLogin() == null || user.getLogin().contains(" ")) {
+        if (user.getLogin() == null || user.getLogin().contains(" ")) {
             throw new ValidationException("Логин не может быть пустым и содержать пробелы.");
         }
-        if (user.getName()==null|| user.getName().isBlank()){
+        if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
-        if (user.getBirthday().isAfter(LocalDate.now())){
+        if (user.getBirthday().isAfter(LocalDate.now())) {
             throw new ValidationException("Дата рождения не может быть в будущем.");
         }
         user.setId(id++);
@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @PutMapping
-    public User put ( @RequestBody User user) {
-        if (!users.containsKey(user.getId())){
+    public User put(@RequestBody User user) {
+        if (!users.containsKey(user.getId())) {
             throw new ValidationException("Пользователя с id " + user.getId() + " не найдено");
         }
         users.put(user.getId(), user);
