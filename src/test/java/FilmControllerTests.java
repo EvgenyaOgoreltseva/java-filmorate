@@ -35,8 +35,7 @@ class FilmControllerTests {
 
     @Test
     void testCreateValidFilm() {
-        Film film = new Film(1, "Film Name", "Film Description",
-                LocalDate.of(2023, 4, 29), 120);
+        Film film = new Film(1, "Film Name", "Film Description", LocalDate.of(2023, 4, 29), 120);
 
         Film result = filmController.create(film);
 
@@ -46,11 +45,9 @@ class FilmControllerTests {
 
     @Test
     void testCreateFilmWithNoName() {
-        Film film = new Film(1, null, "Film Description",
-                LocalDate.of(2023, 4, 29), 120);
+        Film film = new Film(1, null, "Film Description", LocalDate.of(2023, 4, 29), 120);
 
         assertThrows(ValidationException.class, () -> filmController.create(film));
-
 
     }
 
@@ -66,7 +63,7 @@ class FilmControllerTests {
 
     @Test
     void testFilmWithDescriptionMoreThan200Words() {
-        Film film = new Film(1, "Shadows Of Realms", """
+        Film film = new Film(1, "Shadows Of Realms",
                 "In a world on the brink of chaos, a reluctant hero emerges to confront the forces of darkness in 'Shadows of Destiny.'\\n"
                         + "Set in a post-apocalyptic landscape, the film follows the journey of Alex Turner, a former soldier haunted by his past.\\n"
                         + "When an ancient prophecy resurfaces, Alex finds himself thrust into a battle against a malevolent sorcerer who seeks to unleash ultimate destruction upon the world.\\n\\n"
@@ -74,7 +71,7 @@ class FilmControllerTests {
                         + "Together, they must navigate treacherous landscapes, face formidable enemies, and uncover long-lost relics that hold the key to saving humanity.\\n\\n"
                         + "'Shadows of Destiny' is an epic fantasy adventure that seamlessly blends elements of magic, suspense, and heart-pounding action.\\n"
                         + "With stunning visual effects, captivating performances, and a gripping storyline, the film immerses audiences into a richly imagined world where the fate of mankind hangs in the balance.\\n"
-                        + "Prepare to be spellbound as the battle between light and darkness unfolds in this thrilling cinematic experience.")""",
+                        + "Prepare to be spellbound as the battle between light and darkness unfolds in this thrilling cinematic experience.",
                 LocalDate.of(2023, 4, 29), 120);
 
         assertThrows(ValidationException.class, () -> filmController.create(film));
