@@ -3,8 +3,10 @@ import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.controllers.UserController;
 import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.User;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -77,6 +79,7 @@ class UserControllerTests {
         assertEquals(user1.getName(), user1.getLogin());
 
     }
+
     @Test
     void updateExistingUserWithValidUser() {
         User user1 = new User(1, "dmitry@gmail.com", "dmitry", "Дмитрий", LocalDate.of(1980, 6, 6));
@@ -124,6 +127,6 @@ class UserControllerTests {
         User user2 = new User(1, "Ivan@gmail.com", "ivan", "", LocalDate.of(2022, 6, 4));
         userController.update(user2);
 
-        assertEquals(user2.getName(),user2.getLogin());
+        assertEquals(user2.getName(), user2.getLogin());
     }
 }

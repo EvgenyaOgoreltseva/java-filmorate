@@ -3,8 +3,10 @@ import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.controllers.FilmController;
 import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.Film;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FilmControllerTests {
@@ -81,6 +83,7 @@ class FilmControllerTests {
 
         assertThrows(ValidationException.class, () -> filmController.create(film));
     }
+
     @Test
     void updateExistingFilmWithValidFilm() {
 
@@ -90,7 +93,7 @@ class FilmControllerTests {
         Film film1 = new Film(1, "Scooby Doo", "A Scooby Doo Movie", LocalDate.of(2021, 3, 23), 100);
         Film result = filmController.update(film1);
 
-        assertEquals(result,film1);
+        assertEquals(result, film1);
 
     }
 
@@ -113,6 +116,7 @@ class FilmControllerTests {
         assertThrows(ValidationException.class, () -> filmController.update(film1));
 
     }
+
     @Test
     void updateExistingFilmWithDescriptionMoreThanRequiredWords() {
         Film film = new Film(1, "Film Name", "Film Description", LocalDate.of(2023, 4, 29), 120);

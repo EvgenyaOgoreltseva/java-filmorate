@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.User;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class UserController {
     private int generateId() {
         return id++;
     }
+
     @GetMapping
     public ArrayList<User> findAll() {
         log.info("Список пользователей получен.");
@@ -45,7 +47,7 @@ public class UserController {
         return user;
     }
 
-    public static void checksUser(User user){
+    public static void checksUser(User user) {
         if (user.getEmail() == null || user.getEmail().isBlank() || !user.getEmail().contains("@")) {
             throw new ValidationException("Адрес электронной почты не может быть пустым.");
         }
