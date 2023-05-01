@@ -48,7 +48,7 @@ public class FilmController {
         return film;
     }
 
-    public static void checksFilms(Film film) {
+    private void checksFilms(Film film) {
         if (film.getName() == null || film.getName().isBlank()) {
             throw new ValidationException("Название фильма не может быть пустым.");
         }

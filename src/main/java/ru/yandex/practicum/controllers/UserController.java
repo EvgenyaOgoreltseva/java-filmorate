@@ -47,7 +47,7 @@ public class UserController {
         return user;
     }
 
-    public static void checksUser(User user) {
+    private void checksUser(User user) {
         if (user.getEmail() == null || user.getEmail().isBlank() || !user.getEmail().contains("@")) {
             throw new ValidationException("Адрес электронной почты не может быть пустым.");
         }
