@@ -40,7 +40,7 @@ public class FilmService {
 
     public Film addLike(int filmId, int userId) {
         if (filmId < 0 || userId < 0) {
-            throw new NotFoundException("Пользователь с id " + userId + " или фильм с id "+ filmId + " не найдены.");
+            throw new NotFoundException("Пользователь с id " + userId + " или фильм с id " + filmId + " не найдены.");
         }
         Film film = getFilmById(filmId);
         film.getLikedByUserIds().add(userId);
@@ -50,7 +50,7 @@ public class FilmService {
 
     public Film removeLike(int filmId, int userId) {
         if (filmId < 0 || userId < 0) {
-            throw new NotFoundException("Пользователь с id " + userId + " или фильм с id "+ filmId + " не найдены.");
+            throw new NotFoundException("Пользователь с id " + userId + " или фильм с id " + filmId + " не найдены.");
         }
         Film film = getFilmById(filmId);
         film.getLikedByUserIds().remove(userId);
