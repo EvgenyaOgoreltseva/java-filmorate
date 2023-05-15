@@ -1,15 +1,23 @@
 package ru.yandex.practicum.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class User {
+    @NonNull
     private int id;
-    private String email;
-    private String login;
+    private final String email;
+    private final String login;
+    @NonNull
     private String name;
+    @NonNull
     private LocalDate birthday;
+    private final Set<Integer> friendIds = new HashSet<>();
 }
