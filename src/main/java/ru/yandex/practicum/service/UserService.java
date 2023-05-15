@@ -42,7 +42,7 @@ public class UserService {
 
     public User addFriend(int userId, int friendId) {
         if (userId < 0 || friendId < 0) {
-            throw new NotFoundException("Данный" + userId + "," + friendId + "не найден");
+            throw new NotFoundException("Пользователь с id " + userId + " или пользователь с id "+ friendId + " не найдены.");
         }
         User user = getUserById(userId);
         User friend = getUserById(friendId);
@@ -55,7 +55,7 @@ public class UserService {
 
     public User removeFriend(int userId, int friendId) {
         if (userId < 0 || friendId < 0) {
-            throw new NotFoundException("Данный" + userId + "," + friendId + "не найден");
+            throw new NotFoundException("Пользователь с id " + userId + " или пользователь с id "+ friendId + " не найдены.");
         }
         User user = getUserById(userId);
         User friend = getUserById(friendId);
@@ -68,7 +68,7 @@ public class UserService {
 
     public List<User> getFriendsList(int userId) {
         if (userId < 0) {
-            throw new NotFoundException("Данный" + userId + "не найден");
+            throw new NotFoundException("Пользователь с id " + userId  + " не найден.");
         }
         User user = userStorage.getUserById(userId);
         List<User> friendsList = new ArrayList<>();
@@ -80,7 +80,7 @@ public class UserService {
 
     public List<User> getMutualFriends(int userId, int friendId) {
         if (userId < 0 || friendId < 0) {
-            throw new NotFoundException("Данный" + userId + "," + friendId + "не найден");
+            throw new NotFoundException("Пользователь с id " + userId + " или пользователь с id "+ friendId + " не найдены.");
         }
         User user = getUserById(userId);
         User friend = getUserById(friendId);
