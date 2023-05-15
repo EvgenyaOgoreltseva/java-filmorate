@@ -4,13 +4,14 @@ import org.springframework.stereotype.Component;
 import ru.yandex.practicum.model.User;
 
 import java.util.List;
+
 @Component
 public interface UserStorage {
-    List<User> findAllUsers ();
+    List<User> findAllUsers();
 
-    User createUser (User user);
+    User createUser(User user);
 
-    User updateUser (User user);
+    User updateUser(User user);
 
-    User getUserById (int id);
+    User getUserById(int id);
 }
