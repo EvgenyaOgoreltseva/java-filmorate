@@ -1,4 +1,4 @@
-package ru.yandex.practicum.storage;
+package ru.yandex.practicum.storage.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -46,7 +46,7 @@ public class InMemoryUserStorage implements UserStorage {
 
     @Override
     public User getUserById(int id) {
-        if (!users.containsKey(id)) {
+        if (!users.containsKey(id) || users.get(id) == null) {
             throw new NotFoundException("Пользователя с id " + id + " не найдено");
         }
         log.info("Пользователь с id " + id + " найден.");

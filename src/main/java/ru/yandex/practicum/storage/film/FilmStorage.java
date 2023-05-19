@@ -1,11 +1,10 @@
-package ru.yandex.practicum.storage;
+package ru.yandex.practicum.storage.film;
 
-import org.springframework.stereotype.Component;
 import ru.yandex.practicum.model.Film;
 
 import java.util.List;
 
-@Component
+
 public interface FilmStorage {
     List<Film> findAllFilms();
 

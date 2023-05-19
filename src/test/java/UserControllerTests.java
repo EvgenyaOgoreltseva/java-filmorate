@@ -4,7 +4,7 @@ import ru.yandex.practicum.controllers.UserController;
 import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.User;
 import ru.yandex.practicum.service.UserService;
-import ru.yandex.practicum.storage.InMemoryUserStorage;
+import ru.yandex.practicum.storage.user.InMemoryUserStorage;
 
 import java.time.LocalDate;
 import java.util.List;

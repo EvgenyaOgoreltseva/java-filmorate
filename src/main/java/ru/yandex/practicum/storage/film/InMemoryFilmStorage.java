@@ -1,4 +1,4 @@
-package ru.yandex.practicum.storage;
+package ru.yandex.practicum.storage.film;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -45,7 +45,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     @Override
     public Film getFilmById(int id) {
-        if (!films.containsKey(id)) {
+        if (!films.containsKey(id) || films.get(id) == null) {
             throw new NotFoundException("Фильма с id " + id + "не найдено");
         }
         log.info("Фильм с id " + id + " найден.");

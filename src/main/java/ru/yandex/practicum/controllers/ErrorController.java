@@ -16,18 +16,21 @@ public class ErrorController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFound(final NotFoundException e) {
+        log.debug("Entity Not Found");
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidate(final ValidationException e) {
+        log.debug("Validation Not Passed");
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleException(final Throwable e) {
+        log.debug("Interval Server Error");
         return new ErrorResponse(e.getMessage());
     }
 }

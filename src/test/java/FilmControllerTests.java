@@ -5,7 +5,7 @@ import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.Film;
 
 import ru.yandex.practicum.service.FilmService;
-import ru.yandex.practicum.storage.InMemoryFilmStorage;
+import ru.yandex.practicum.storage.film.InMemoryFilmStorage;
 
 import java.time.LocalDate;
 import java.util.List;
