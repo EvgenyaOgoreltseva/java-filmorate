@@ -1,64 +1,69 @@
 package ru.yandex.practicum.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.yandex.practicum.exceptions.ValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.yandex.practicum.model.User;
 import org.springframework.web.bind.annotation.*;
+import ru.yandex.practicum.service.UserService;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @RestController
-@Slf4j
 @RequestMapping("/users")
+@Slf4j
 public class UserController {
-    private int id = 1;
-    private final Map<Integer, User> users = new HashMap<>();
 
-    private int generateId() {
-        return id++;
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    public ArrayList<User> findAll() {
-        log.info("Список пользователей получен.");
-        return new ArrayList<>(users.values());
+    public List<User> findAllUsers() {
+        return userService.findAllUsers();
     }
 
     @PostMapping
-    public User create(@RequestBody User user) {
-        checksUser(user);
-        user.setId(generateId());
-        users.put(user.getId(), user);
-        log.info("Пользователь сохранен");
-        return user;
+    public User createUser(@RequestBody User user) {
+        log.info("Получен запрос на добавление пользователя");
+        return userService.createUser(user);
     }
 
     @PutMapping
-    public User update(@RequestBody User user) {
-        checksUser(user);
-        if (!users.containsKey(user.getId())) {
-            throw new ValidationException("Пользователя с id " + user.getId() + " не найдено");
-        }
-        users.put(user.getId(), user);
-        log.info("Пользователь с id " + user.getId() + " обновлен.");
-        return user;
+    public User updateUser(@RequestBody User user) {
+        log.info("Получен запрос на обновление пользователя с ID - " + user.getId());
+        return userService.updateUser(user);
     }
 
-    private void checksUser(User user) {
-        if (user.getEmail() == null || user.getEmail().isBlank() || !user.getEmail().contains("@")) {
-            throw new ValidationException("Адрес электронной почты не может быть пустым.");
-        }
-        if (user.getLogin() == null || user.getLogin().contains(" ")) {
-            throw new ValidationException("Логин не может быть пустым и содержать пробелы.");
-        }
-        if (user.getName() == null || user.getName().isBlank()) {
-            user.setName(user.getLogin());
-        }
-        if (user.getBirthday().isAfter(LocalDate.now())) {
-            throw new ValidationException("Дата рождения не может быть в будущем.");
-        }
+    @GetMapping("/{userId}")
+    public User getUserById(@PathVariable int userId) {
+        log.info("Получен запрос на получение пользователя с ID - " + userId);
+        return userService.getUserById(userId);
+    }
+
+    @PutMapping("/{userId}/friends/{friendId}")
+    public User addFriend(@PathVariable("userId") int userId, @PathVariable("friendId") int friendId) {
+        log.info("Получен запрос на добавление друга с ID - " + friendId + " в друзья к пользователю с ID - " + userId);
+        return userService.addFriend(userId, friendId);
+    }
+
+    @DeleteMapping("/{userId}/friends/{friendId}")
+    public User removeFriend(@PathVariable("userId") int userId, @PathVariable("friendId") int friendId) {
+        log.info("Получен запрос на удаление друга с ID - " + friendId + " из друзей пользователя с ID - " + userId);
+        return userService.removeFriend(userId, friendId);
+    }
+
+    @GetMapping("/{userId}/friends")
+    public List<User> getFriendsList(@PathVariable int userId) {
+        log.info("Получен запрос на получение списка друзей пользователя с ID - " + userId);
+        return userService.getFriendsList(userId);
+    }
+
+    @GetMapping("/{userId}/friends/common/{otherId}")
+    public List<User> getMutualFriends(@PathVariable int userId, @PathVariable int otherId) {
+        log.info("Получен запрос на получение списка общих друзей пользователей с ID - " + userId + " и " + otherId);
+        return userService.getMutualFriends(userId, otherId);
     }
 }
