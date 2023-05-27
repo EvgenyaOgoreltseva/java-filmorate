@@ -1,5 +1,6 @@
 # java-filmorate
 
+
 ![diagram.jpg](diagram.jpg)
 ### Примеры запросов для основных операций приложения:
 
@@ -26,3 +27,5 @@ SELECT COUNT(friend_id)
 FROM friends 
 WHERE user_id = 1;
 ```
+=======
+
