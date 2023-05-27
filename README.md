@@ -1,7 +1,6 @@
 # java-filmorate
 
-![Image alt](https://github.com/EvgenyaOgoreltseva/java-filmorate/blob/main/diagram.jpg)
-
+![diagram.jpg](diagram.jpg)
 ### Примеры запросов для основных операций приложения:
 
 #### Получение логина пользователя по id
