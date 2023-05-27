@@ -24,6 +24,6 @@ WHERE film_id = 1;
 
 ```
 SELECT COUNT(friend_id)
-FROM friends
+FROM friends 
 WHERE user_id = 1;
 ```
