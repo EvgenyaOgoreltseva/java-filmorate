@@ -1,17 +1,17 @@
 package ru.yandex.practicum.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.HashSet;
-
+import java.util.List;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Film {
     private int id;
     @NotBlank(message = "Ошибка валидации! Имя не может быть пустым!")
@@ -21,8 +21,18 @@ public class Film {
     private LocalDate releaseDate;
     @Positive(message = "Ошибка валидации! Продолжительность должна быть больше нуля!")
     private int duration;
-    private final HashSet<Integer> likedByUserIds = new HashSet<>();
+    private Mpa mpa;
+    private List<Genre> genres;
+    private List<Integer> likedByUserIds;
 
 
+    //для unit tests
+    public Film(int id, String name, String description, LocalDate releaseDate, int duration, Mpa mpa) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.releaseDate = releaseDate;
+        this.duration = duration;
+        this.mpa = mpa;
+    }
 }
-

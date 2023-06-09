@@ -1,13 +1,14 @@
 package ru.yandex.practicum.model;
 
 public class ErrorResponse {
-    String error;
+    private final String errorMessage;
 
-    public ErrorResponse(String error) {
-        this.error = error;
+    public ErrorResponse(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public String getError() {
-        return error;
+    public String getErrorMessage() {
+        return errorMessage;
     }
+
 }

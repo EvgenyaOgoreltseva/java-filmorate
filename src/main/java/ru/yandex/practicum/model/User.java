@@ -2,6 +2,7 @@ package ru.yandex.practicum.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,10 +11,10 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Data
 @AllArgsConstructor
 public class User {
+    @NonNull
     private int id;
     @NotBlank(message = "Ошибка валидации! Email не может быть пустым!")
     @Email(message = "Ошибка валидации! Email должен содержать символ '@'!")
