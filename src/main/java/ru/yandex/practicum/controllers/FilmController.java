@@ -10,7 +10,6 @@ import ru.yandex.practicum.service.FilmService;
 import java.util.List;
 
 @RestController
-
 @RequestMapping("/films")
 @RequiredArgsConstructor
 @Slf4j
