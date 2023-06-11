@@ -149,8 +149,7 @@ public class FilmDaoTests {
         User user = new User(1, "daniil@mail.ru", "Daniil88", "Daniil",
                 LocalDate.of(1988, 8, 14));
         userDao.createUser(user);
-
-
+        
         filmDao.addLike(film.getId(), user.getId());
         filmDao.addLike(film2.getId(), user.getId());
 
