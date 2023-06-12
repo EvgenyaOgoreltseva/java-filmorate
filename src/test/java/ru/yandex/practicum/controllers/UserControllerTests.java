@@ -1,10 +1,14 @@
-import org.junit.jupiter.api.BeforeEach;
+package ru.yandex.practicum.controllers;
+
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import ru.yandex.practicum.controllers.UserController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import ru.yandex.practicum.FilmorateApplication;
 import ru.yandex.practicum.exceptions.ValidationException;
 import ru.yandex.practicum.model.User;
-import ru.yandex.practicum.service.UserService;
-import ru.yandex.practicum.storage.user.InMemoryUserStorage;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,16 +16,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+
+@SpringBootTest(classes = FilmorateApplication.class)
+@AutoConfigureTestDatabase
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class UserControllerTests {
 
-    private UserService userService;
-    private UserController userController;
-
-    @BeforeEach
-    void setUp() {
-        userService = new UserService(new InMemoryUserStorage());
-        userController = new UserController(userService);
-    }
+    private final UserController userController;
 
     @Test
     void findAllAddedUserInTheList() {
@@ -119,7 +121,7 @@ class UserControllerTests {
         User user1 = new User(1, "dmitry@gmail.com", "dmitry", "Дмитрий", LocalDate.of(1990, 6, 6));
         userController.createUser(user1);
 
-        User user2 = new User(1, "Ivan@gmail.com", "ivan", "Иван", LocalDate.of(2023, 6, 4));
+        User user2 = new User(1, "Ivan@gmail.com", "ivan", "Иван", LocalDate.of(2023, 12, 4));
         assertThrows(ValidationException.class, () -> userController.updateUser(user2));
     }
 
@@ -133,4 +135,5 @@ class UserControllerTests {
 
         assertEquals(user2.getName(), user2.getLogin());
     }
+
 }

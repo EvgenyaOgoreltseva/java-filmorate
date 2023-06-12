@@ -23,14 +23,14 @@ public class ErrorController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidate(final ValidationException e) {
-        log.debug("Validation Not Passed");
+        log.debug("Validation not passed");
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleException(final Throwable e) {
-        log.debug("Interval Server Error");
+        log.debug("Internal Server Error");
         return new ErrorResponse(e.getMessage());
     }
 }
